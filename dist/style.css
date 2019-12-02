@@ -1,0 +1,16 @@
+#title {
+    color: blue; 
+}
+
+.newItem {
+    font-size: 22px;
+    color: black;
+    background-color: #eee; 
+    height: 36px;
+    width: 200px; 
+    list-style-type: none;
+}
+
+input {
+    display: block;
+}
