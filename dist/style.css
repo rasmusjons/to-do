@@ -9,8 +9,27 @@
     height: 36px;
     width: 200px; 
     list-style-type: none;
+
+    
 }
 
 input {
     display: block;
+}
+
+.divProj{
+    font-size: 30px;
+    font-weight: bold;
+    color: black;
+    background-color: #cddc39; 
+    height: 36px;
+    width: 200px; 
+    list-style-type: none;
+
+}
+
+
+ul {
+    padding: 0; 
+    margin: 0; 
 }

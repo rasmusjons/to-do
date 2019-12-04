@@ -1,12 +1,12 @@
 let project = [];
 
-function displayNew(e) {
+function displayNew(element) {
 
     let newLi = document.createElement("li");
     newLi.setAttribute("class", "newItem");
     stylingItems(newLi);
 
-    let newContent = document.createTextNode(e);
+    let newContent = document.createTextNode(element);
     newLi.appendChild(newContent);
 
     document.getElementById("myUL").appendChild(newLi)
@@ -15,13 +15,14 @@ function displayNew(e) {
 
 function displayProject(e) {
 
-    let div = document.createElement("div");
-    div.setAttribute("class", "newdiv");
-
+    let divProj = document.createElement("div");
+    divProj.setAttribute("class", "divProj");
+    projectStyling(divProj);
+    
     let newContent = document.createTextNode(e);
-    div.appendChild(newContent);
+    divProj.appendChild(newContent);
 
-    document.getElementById("projectDiv").appendChild(div)
+    document.getElementById("projectDiv").appendChild(divProj)
 }
 
 
@@ -29,9 +30,7 @@ function displayProject(e) {
 
 
 
-
-
-// styling 
+// STYLING ------------------------------------
 function stylingItems(e) {
     e.onclick = function () {
         e.style.textDecoration = "line-through";
@@ -42,9 +41,36 @@ function stylingItems(e) {
 
 }
 
+
+
+function projectStyling(e) {
+    e.onclick = function () {
+        let element = document.getElementById("myUL")
+            if (element.style.display === "block") {
+                element.style.display = "none";
+            } else {
+                element.style.display = "block";
+        } 
+    }
+
+    e.style.cursor = 'pointer'
+}
+
 //fixar stylingen för listan som är där via html
 document.querySelectorAll(".newItem").forEach(e => stylingItems(e));
 document.querySelectorAll(".newItem").forEach(e => e.style.cursor = 'pointer');
+
+
+(function setMyUlAsBlock(){
+    document.getElementById("myUL").style.display = "block"; 
+})();
+
+
+//STYLING SLUT ---------------
+
+
+
+
 
 
 
@@ -52,9 +78,9 @@ document.querySelectorAll(".newItem").forEach(e => e.style.cursor = 'pointer');
 let createToDo = (title, desc, due, prio) => {
     return {
         title: title,
-        desc: desc, 
-        due: due, 
-        prio: prio 
+        desc: desc,
+        due: due,
+        prio: prio
 
     }
 }
@@ -77,10 +103,10 @@ let createToDo = (title, desc, due, prio) => {
         let dueDate = addForm.querySelector('input[name="dueDate"]')
         let prio = addForm.querySelector('input[name="prio"]')
         let note = `${title.value} ${description.value} ${dueDate.value} ${prio.value}`;
-      
+
 
         let newtodo = createToDo(
-            `${title.value}`, 
+            `${title.value}`,
             `${description.value}`,
             `${dueDate.value}`,
             `${prio.value}`
@@ -96,12 +122,23 @@ let createToDo = (title, desc, due, prio) => {
 })();
 
 
-let projectForm = document.forms["projectformId"];
-projectForm.addEventListener("submit", function (e) {
-    e.preventDefault();
-    let projectName = projectForm.querySelector('input[name="project"]')
-    displayProject(projectName)
-}
+(function displayProjects() {
+    let addForm = document.forms["projectformId"];
+
+    addForm.addEventListener("submit", function (e) {
+        e.preventDefault();
+        let projectName = addForm.querySelector('input[name="project"]');
+        let projectNameValue = `${projectName.value}`
+        displayProject(projectNameValue);
+
+    })
+})();
+
+
+
+
+
+
 
 
 // (function displayDescription() {
