@@ -7,40 +7,55 @@
 </head>
 
 <body>
-   
 
 
-                <form id="formId"class="form-container">
-                    
-                  <label for="title"><b>Title</b></label>
-                  <input type="text" placeholder="Title" name="title" id="titleId">
-              
-                  <label for="description"><b>Description</b></label>
-                  <input type="text" placeholder="Description" name="description" id="descriptionId">
-    
-                  <label for="Due date"><b>Due date</b></label>
-                  <input type="text" placeholder="Due date" name="dueDate">
-               
-                  <label for="Priority"><b>Priority</b></label>
-                  <input type="text" placeholder="Priority" name="prio">
-    
-              
-                  <button type="submit" class="btn">Add</button>
-                  <button type="button"  class="btn" onclick="closeForm()" id="submitButton">Close</button>
-                </form>
-              </div>
+    <form id="projectformId" class="form-container">
+
+        <label for="new Project"><b>New Project</b></label>
+        <input type="text" placeholder="Project" name="project" id="projectId">
 
 
-              <ul  id="myUL">
-                    <li class="newItem">Hit the gym</li>
-                    <li class="newItem">Pay bills</li>
-                    <li class="newItem">Meet George</li>
-                    <li class="newItem">Buy eggs</li>
-                    <li class="newItem">Read a book</li>
-                    <li class="newItem">Organize office</li>
-                </ul>
 
-     
+        <button type="submit" class="btn">Add</button>
+        <button type="button" class="btn" onclick="closeForm()" id="submitButton">Close</button>
+    </form>
+
+    <br>
+    <br>
+    <br>
+
+    <form id="formId" class="form-container">
+
+        <label for="title"><b>Title</b></label>
+        <input type="text" placeholder="Title" name="title" id="titleId">
+
+        <label for="description"><b>Description</b></label>
+        <input type="text" placeholder="Description" name="description" id="descriptionId">
+
+        <label for="Due date"><b>Due date</b></label>
+        <input type="text" placeholder="Due date" name="dueDate">
+
+        <label for="Priority"><b>Priority</b></label>
+        <input type="text" placeholder="Priority" name="prio">
+
+
+        <button type="submit" class="btn">Add</button>
+        <button type="button" class="btn" onclick="closeForm()" id="submitButton">Close</button>
+    </form>
+    </div>
+
+
+    <ul id="myUL">
+        <li class="newItem">Hit the gym</li>
+        <li class="newItem">Pay bills</li>
+        <li class="newItem">Meet George</li>
+        <li class="newItem">Buy eggs</li>
+        <li class="newItem">Read a book</li>
+        <li class="newItem">Organize office</li>
+    </ul>
+
+    <div id="projectDiv"> My Projects</div>
+
 
 
     <script src="main.js"></script>
