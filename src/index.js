@@ -18,13 +18,15 @@ function displayNew(text, appendID) {
   const button = document.createElement("button");
   button.innerHTML = "X";
   button.setAttribute("class", "closeButton");
-
+  button.onclick = function() {
+    this.parentNode.style.display = "none";
+  };
   newLi.appendChild(button);
 }
 
 function displayProject(title, projectId) {
   const passedId = projectId;
-  console.log(`${passedId}displayporject`);
+
   const divProj = document.createElement("div");
   divProj.setAttribute("class", "divProj");
   divProj.setAttribute("id", passedId);
@@ -32,11 +34,6 @@ function displayProject(title, projectId) {
   const newContent = document.createTextNode(title);
   divProj.appendChild(newContent);
   document.getElementById("projectDiv").appendChild(divProj);
-
-  const button = document.createElement("button");
-  button.innerHTML = "-";
-  button.setAttribute("class", "closeButton");
-  divProj.appendChild(button);
 
   displayPopForm(passedId);
 }
@@ -62,6 +59,7 @@ function displayPopForm(e) {
   console.log(`${passedIdPop}dPF`);
   const f = document.createElement("form");
   f.setAttribute("id", passedIdPop);
+  f.setAttribute("class", passedIdPop);
 
   const i = document.createElement("input"); // input element, text
   i.setAttribute("type", "text");
@@ -74,7 +72,6 @@ function displayPopForm(e) {
   f.appendChild(s);
   document.getElementById(e).appendChild(f);
   displayNotes(passedIdPop);
-  Closebutton(passedIdPop);
 }
 
 function Closebutton(id) {
