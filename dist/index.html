@@ -1,30 +1,23 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
-
-<head>
+  <head>
     <title>Getting Started</title>
-    <link rel="stylesheet" href="./style.css">
-</head>
+    <link rel="stylesheet" href="./style.css" />
+  </head>
 
-<body>
-
-
+  <body>
     <form id="projectformId" class="form-container">
+      <label for="new Project"><b>Add To-Do List</b></label>
+      <input type="text" placeholder="Project" name="project" id="projectId" />
 
-        <label for="new Project"><b>New Project</b></label>
-        <input type="text" placeholder="Project" name="project" id="projectId">
-
-
-
-        <button type="submit" class="btn">Add</button>
-        <button type="button" class="btn" onclick="closeForm()" id="submitButton">Close</button>
+      <button type="submit" class="btn">Add</button>
     </form>
 
-    <br>
-    <br>
-    <br>
+    <br />
+    <br />
+    <br />
 
-    <form id="formId" class="form-container">
+    <!-- <form id="formId" class="form-container">
 
         <label for="title"><b>Title</b></label>
         <input type="text" placeholder="Title" name="title" id="titleId">
@@ -40,26 +33,20 @@
 
 
         <button type="submit" class="btn">Add</button>
-        <button type="button" class="btn" onclick="closeForm()" id="submitButton">Close</button>
     </form>
-    </div>
+    </div> -->
 
-    <div id="projectDiv"> My Projects</div>
-    
+    <div id="projectDiv"></div>
+
     <ul id="myUL">
-        <li class="newItem">Hit the gym</li>
+      <!-- <li class="newItem">Hit the gym</li>
         <li class="newItem">Pay bills</li>
         <li class="newItem">Meet George</li>
         <li class="newItem">Buy eggs</li>
         <li class="newItem">Read a book</li>
-        <li class="newItem">Organize office</li>
+        <li class="newItem">Organize office</li> -->
     </ul>
 
-    
-
-
-
     <script src="main.js"></script>
-</body>
-
+  </body>
 </html>

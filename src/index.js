@@ -1,189 +1,129 @@
-let project = [];
+/* eslint-disable arrow-parens */
+/* eslint-disable no-unused-vars */
+/* eslint-disable quotes */
+const projectArray = [];
+const run = false;
+let id = 0;
 
-function displayNew(element) {
+function displayNew(text, appendID) {
+  const newLi = document.createElement("li");
+  newLi.setAttribute("class", "newItem");
+  stylingItems(newLi);
 
-    let newLi = document.createElement("li");
-    newLi.setAttribute("class", "newItem");
-    stylingItems(newLi);
+  const newContent = document.createTextNode(text, null);
+  newLi.appendChild(newContent);
 
-    let newContent = document.createTextNode(element);
-    newLi.appendChild(newContent);
-
-    document.getElementById("myUL").appendChild(newLi)
+  document.getElementById(appendID).appendChild(newLi);
 }
-
 
 function displayProject(e) {
+  const passedId = e;
+  console.log(passedId + "displayporject");
+  const divProj = document.createElement("div");
+  divProj.setAttribute("class", "divProj");
+  divProj.setAttribute("id", passedId);
 
-    let divProj = document.createElement("div");
-    divProj.setAttribute("class", "divProj");
-    projectStyling(divProj);
-    
-    let newContent = document.createTextNode(e);
-    divProj.appendChild(newContent);
-
-    document.getElementById("projectDiv").appendChild(divProj)
+  const newContent = document.createTextNode(passedId);
+  divProj.appendChild(newContent);
+  document.getElementById("projectDiv").appendChild(divProj);
+  displayPopForm(passedId);
 }
-
-
-
-
-
 
 // STYLING ------------------------------------
 function stylingItems(e) {
-    e.onclick = function () {
-        e.style.textDecoration = "line-through";
-        e.style.background = "grey";
-        e.style.color = "white";
+  e.onclick = function() {
+    if (e.style.textDecoration != "line-through") {
+      e.style.textDecoration = "line-through";
+      e.style.background = "grey";
+      e.style.color = "white";
+    } else {
+      e.style.textDecoration = "none";
+      e.style.background = "#eee";
+      e.style.color = "black";
     }
-    e.style.cursor = 'pointer'
-
+  };
+  e.style.cursor = "pointer";
 }
 
+function displayPopForm(e) {
+  let passedIdPop = e;
+  console.log(passedIdPop + "dPF");
+  const f = document.createElement("form");
+  f.setAttribute("id", "formId");
 
+  const i = document.createElement("input"); // input element, text
+  i.setAttribute("type", "text");
+  i.setAttribute("name", "title");
 
+  const s = document.createElement("input"); // input element, Submit button
+  s.setAttribute("type", "submit");
+  s.setAttribute("value", "Submit");
+  f.appendChild(i);
+  f.appendChild(s);
+  document.getElementById(e).appendChild(f);
+  displayNotes(passedIdPop);
+}
+
+// öppnar stänger listan
 function projectStyling(e) {
-    e.onclick = function () {
-        let element = document.getElementById("myUL")
-            if (element.style.display === "block") {
-                element.style.display = "none";
-            } else {
-                element.style.display = "block";
-        } 
+  e.onclick = function() {
+    const element = document.getElementById("myUL");
+    if (element.style.display === "block") {
+      element.style.display = "none";
+    } else {
+      element.style.display = "block";
     }
+  };
 
-    e.style.cursor = 'pointer'
+  e.style.cursor = "pointer";
 }
 
-//fixar stylingen för listan som är där via html
-document.querySelectorAll(".newItem").forEach(e => stylingItems(e));
-document.querySelectorAll(".newItem").forEach(e => e.style.cursor = 'pointer');
+// STYLING SLUT ---------------
 
-
-(function setMyUlAsBlock(){
-    document.getElementById("myUL").style.display = "block"; 
-})();
-
-
-//STYLING SLUT ---------------
-
-
-
-
-
-
-
-
-let createToDo = (title, desc, due, prio) => {
-    return {
-        title: title,
-        desc: desc,
-        due: due,
-        prio: prio
-
+function calculateId() {
+  // eslint-disable-next-line no-plusplus
+  for (let i = 0; i < projectArray.length; i++) {
+    if (id <= projectArray[i].projectId) {
+      id = projectArray[i].projectId + 1;
     }
+  }
+  return id;
 }
 
-// let newtodo = createToDo("handla", "mycket", "nu", "5a")
-// console.log(newtodo);
+const createProject = (title, id) => {
+  const project = {
+    title,
+    projectId: id
+  };
+  projectArray.push(project);
 
-
-
-
+  function printId() {
+    return `${id}`;
+  }
+  displayProject(id);
+};
 
 // TRYCKER UT INPUTEN I FORMEN I DVS SOM APPENDAS MED DISPLANEW
 
-(function displayNotes() {
-    const addForm = document.forms["formId"];
-    addForm.addEventListener("submit", function (e) {
-        e.preventDefault();
-        let title = addForm.querySelector('input[name="title"]')
-        let description = addForm.querySelector('input[name="description"]')
-        let dueDate = addForm.querySelector('input[name="dueDate"]')
-        let prio = addForm.querySelector('input[name="prio"]')
-        let note = `${title.value} ${description.value} ${dueDate.value} ${prio.value}`;
+function displayNotes(passedId) {
+  let id = passedId;
+  const addForm = document.forms.formId;
+  addForm.addEventListener("submit", e => {
+    e.preventDefault();
+    const title = addForm.querySelector('input[name="title"]');
+    const titleValue = `${title.value}`;
+    displayNew(titleValue, id);
+  });
+}
 
+// eslint-disable-next-line wrap-iife
+(function addProjectEvent() {
+  const addForm = document.forms.projectformId;
 
-        let newtodo = createToDo(
-            `${title.value}`,
-            `${description.value}`,
-            `${dueDate.value}`,
-            `${prio.value}`
-        )
-        project.push(newtodo);
-
-        console.log(project[0].title)
-        displayNew(note)
-        //displayProject(project[0].title)
-
-
-    })
+  addForm.addEventListener("submit", e => {
+    e.preventDefault();
+    const projectName = addForm.querySelector('input[name="project"]');
+    const projectNameValue = `${projectName.value}`;
+    const aProject = createProject(`${projectName.value}`, calculateId());
+  });
 })();
-
-
-(function displayProjects() {
-    let addForm = document.forms["projectformId"];
-
-    addForm.addEventListener("submit", function (e) {
-        e.preventDefault();
-        let projectName = addForm.querySelector('input[name="project"]');
-        let projectNameValue = `${projectName.value}`
-        displayProject(projectNameValue);
-
-    })
-})();
-
-
-
-
-
-
-
-
-// (function displayDescription() {
-//     const addForm = document.forms["formId"];
-//     addForm.addEventListener("submit", function (e) {
-//         e.preventDefault();
-//         let description = addForm.querySelector('input[name="description"]')
-//         if (description.value === '') {
-//             console.log(description.  + "no value in field")
-//             return;
-//         } else {
-//             let descriptionValue = description.value;
-//             displayNew(descriptionValue)
-//         }
-//     })
-// })();
-
-
-// (function displayDueDate() {
-//     const addForm = document.forms["formId"];
-//     addForm.addEventListener("submit", function (e) {
-//         e.preventDefault();
-//         let dueDate = addForm.querySelector('input[name="dueDate"]')
-//         if (description.value === '') {
-//             console.log("no value in field")
-//             return;
-//         } else {
-//             let dueDateValue = dueDate.value;
-//             displayNew(dueDateValue)
-//         }
-//     })
-// })();
-
-
-// (function displayPrio() {
-//     const addForm = document.forms["formId"];
-//     addForm.addEventListener("submit", function (e) {
-//         e.preventDefault();
-//         let prio = addForm.querySelector('input[name="prio"]')
-//         if (description.value === '') {
-//             console.log("no value in field")
-//             return;
-//         } else {
-//             let prioValue = prio.value;
-//             displayNew(prioValue)
-//         }
-//     })
-// })();

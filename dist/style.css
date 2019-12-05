@@ -1,35 +1,46 @@
-#title {
-    color: blue; 
+.form-container {
+  width: 300px;
 }
 
 .newItem {
-    font-size: 22px;
-    color: black;
-    background-color: #eee; 
-    height: 36px;
-    width: 200px; 
-    list-style-type: none;
-
-    
+  font-size: 22px;
+  color: black;
+  background-color: #eee;
+  height: 36px;
+  width: 200px;
+  list-style-type: none;
 }
 
 input {
-    display: block;
+  display: block;
 }
 
-.divProj{
-    font-size: 30px;
-    font-weight: bold;
-    color: black;
-    background-color: #cddc39; 
-    height: 36px;
-    width: 200px; 
-    list-style-type: none;
+#projectDiv {
+  font-size: 22px;
+  color: white;
 
+  width: 800px;
+  margin-top: 50px;
+
+  display: inline-flex;
 }
 
+.divProj {
+  font-size: 30px;
+  font-weight: bold;
+  color: black;
+  background-color: #777a5c;
+  height: 36px;
+  width: 200px;
+  list-style-type: none;
+  margin: 10px;
+}
 
 ul {
-    padding: 0; 
-    margin: 0; 
+  padding: 0;
+  margin: 0;
+}
+
+#formId {
+  padding-top: 10px;
 }
