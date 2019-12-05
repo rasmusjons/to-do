@@ -1,14 +1,19 @@
+body {
+  background-color: #eee;
+}
+
 .form-container {
   width: 300px;
 }
 
 .newItem {
-  font-size: 22px;
+  font-size: 16px;
   color: black;
   background-color: #eee;
-  height: 36px;
+  height: 16px;
   width: 200px;
   list-style-type: none;
+  padding: inherit;
 }
 
 input {
@@ -20,19 +25,19 @@ input {
   color: white;
 
   width: 800px;
-  margin-top: 50px;
 
   display: inline-flex;
 }
 
 .divProj {
-  font-size: 30px;
-  font-weight: bold;
-  color: black;
-  background-color: #777a5c;
-  height: 36px;
-  width: 200px;
-  list-style-type: none;
+  font-family: "Varela Round", sans-serif;
+  font-size: 28px;
+  text-transform: uppercase;
+  background-color: #1f1a4f;
+  padding: 10px 15px;
+  border-radius: 10px;
+  margin-bottom: 30px;
+  width: auto;
   margin: 10px;
 }
 
@@ -41,6 +46,72 @@ ul {
   margin: 0;
 }
 
+li {
+  border-radius: 10px;
+  margin-top: 5px;
+}
+
 #formId {
   padding-top: 10px;
+}
+
+[type="submit"] {
+  font-family: "Varela Round", sans-serif;
+  font-size: 18px;
+  text-transform: uppercase;
+  background-color: #c82027;
+  padding: 10px 15px;
+  border-radius: 10px;
+  margin-bottom: 30px;
+  width: 231px;
+  margin-top: 10px;
+  color: white;
+}
+
+[type="submit"]:hover {
+  background-color: #b3b3b3;
+  cursor: pointer;
+}
+
+[type="text"] {
+  margin-top: 25px;
+  border-radius: 10px;
+  height: 25px;
+  width: 231px;
+}
+
+label {
+  font-family: "Varela Round", sans-serif;
+  font-size: 18px;
+  text-transform: uppercase;
+}
+
+.alert {
+  background-color: coral;
+  height: 30px;
+  width: 100px;
+}
+
+#projectformId {
+  color: white;
+  font-family: "Varela Round", sans-serif;
+  font-size: 28px;
+  text-transform: uppercase;
+  background-color: #1f1a4f;
+  padding: 10px 15px;
+  border-radius: 10px;
+  margin-bottom: 30px;
+
+  width: auto;
+}
+
+.closeButton {
+  border: none;
+  float: right;
+  border-radius: 10px;
+  background-color: rgb(238, 238, 238);
+}
+
+.closeButton:hover {
+  transform: scale(1.3);
 }

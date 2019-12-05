@@ -13,8 +13,13 @@ function displayNew(text, appendID) {
 
   const newContent = document.createTextNode(text);
   newLi.appendChild(newContent);
-
   document.getElementById(appendID).appendChild(newLi);
+
+  const button = document.createElement("button");
+  button.innerHTML = "X";
+  button.setAttribute("class", "closeButton");
+
+  newLi.appendChild(button);
 }
 
 function displayProject(title, projectId) {
@@ -27,6 +32,12 @@ function displayProject(title, projectId) {
   const newContent = document.createTextNode(title);
   divProj.appendChild(newContent);
   document.getElementById("projectDiv").appendChild(divProj);
+
+  const button = document.createElement("button");
+  button.innerHTML = "-";
+  button.setAttribute("class", "closeButton");
+  divProj.appendChild(button);
+
   displayPopForm(passedId);
 }
 
@@ -35,8 +46,8 @@ function stylingItems(e) {
   e.onclick = function() {
     if (e.style.textDecoration != "line-through") {
       e.style.textDecoration = "line-through";
-      e.style.background = "grey";
-      e.style.color = "white";
+
+      e.style.color = "grey";
     } else {
       e.style.textDecoration = "none";
       e.style.background = "#eee";
@@ -58,11 +69,21 @@ function displayPopForm(e) {
 
   const s = document.createElement("input"); // input element, Submit button
   s.setAttribute("type", "submit");
-  s.setAttribute("value", "Submit");
+  s.setAttribute("value", "Create");
   f.appendChild(i);
   f.appendChild(s);
   document.getElementById(e).appendChild(f);
   displayNotes(passedIdPop);
+  Closebutton(passedIdPop);
+}
+
+function Closebutton(id) {
+  let x = querySelector(".closeButton");
+
+  let y = document.getElementById(id);
+  x.onclick = function() {
+    y.style.display = "none";
+  };
 }
 
 // öppnar stänger listan
@@ -113,6 +134,10 @@ function displayNotes(formId) {
     e.preventDefault();
     const title = addForm.querySelector('input[name="title"]');
     const titleValue = `${title.value}`;
+    if (titleValue === "") {
+      alert("please enter a project name");
+      return;
+    }
     displayNew(titleValue, formId);
   });
 }
@@ -122,10 +147,18 @@ function displayNotes(formId) {
   const addForm = document.forms.projectformId;
 
   addForm.addEventListener("submit", e => {
-    console.log("hej");
     e.preventDefault();
     const projectName = addForm.querySelector('input[name="project"]');
     const projectNameValue = `${projectName.value}`;
+    if (projectNameValue === "") {
+      alert("please enter a project name");
+      // const alert = document.createElement("div");
+      // alert.setAttribute("class", "alert");
+      // const newContent = document.createTextNode("please enter a project name");
+      // alert.appendChild(newContent);
+      // document.getElementById("projectformId").appendChild(alert);
+      return;
+    }
     const aProject = createProject(`${projectName.value}`, calculateId());
   });
 })();
