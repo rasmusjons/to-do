@@ -6,24 +6,25 @@ const run = false;
 let id = 0;
 
 function displayNew(text, appendID) {
+  console.log("HEJ");
   const newLi = document.createElement("li");
   newLi.setAttribute("class", "newItem");
   stylingItems(newLi);
 
-  const newContent = document.createTextNode(text, null);
+  const newContent = document.createTextNode(text);
   newLi.appendChild(newContent);
 
   document.getElementById(appendID).appendChild(newLi);
 }
 
-function displayProject(e) {
-  const passedId = e;
-  console.log(passedId + "displayporject");
+function displayProject(title, projectId) {
+  const passedId = projectId;
+  console.log(`${passedId}displayporject`);
   const divProj = document.createElement("div");
   divProj.setAttribute("class", "divProj");
   divProj.setAttribute("id", passedId);
 
-  const newContent = document.createTextNode(passedId);
+  const newContent = document.createTextNode(title);
   divProj.appendChild(newContent);
   document.getElementById("projectDiv").appendChild(divProj);
   displayPopForm(passedId);
@@ -46,10 +47,10 @@ function stylingItems(e) {
 }
 
 function displayPopForm(e) {
-  let passedIdPop = e;
-  console.log(passedIdPop + "dPF");
+  const passedIdPop = e;
+  console.log(`${passedIdPop}dPF`);
   const f = document.createElement("form");
-  f.setAttribute("id", "formId");
+  f.setAttribute("id", passedIdPop);
 
   const i = document.createElement("input"); // input element, text
   i.setAttribute("type", "text");
@@ -100,19 +101,19 @@ const createProject = (title, id) => {
   function printId() {
     return `${id}`;
   }
-  displayProject(id);
+  displayProject(title, id);
 };
 
 // TRYCKER UT INPUTEN I FORMEN I DVS SOM APPENDAS MED DISPLANEW
 
-function displayNotes(passedId) {
-  let id = passedId;
-  const addForm = document.forms.formId;
+function displayNotes(formId) {
+  const addForm = document.getElementById(formId);
   addForm.addEventListener("submit", e => {
+    console.log("eventL");
     e.preventDefault();
     const title = addForm.querySelector('input[name="title"]');
     const titleValue = `${title.value}`;
-    displayNew(titleValue, id);
+    displayNew(titleValue, formId);
   });
 }
 
@@ -121,6 +122,7 @@ function displayNotes(passedId) {
   const addForm = document.forms.projectformId;
 
   addForm.addEventListener("submit", e => {
+    console.log("hej");
     e.preventDefault();
     const projectName = addForm.querySelector('input[name="project"]');
     const projectNameValue = `${projectName.value}`;
